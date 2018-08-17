@@ -1,0 +1,33 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #e1e2ed;
+}
+
+.container-header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #e1e2ed;
+}
+
+.header{
+    background-color: #f44242;
+    padding: 5px;
+    width: 36%;
+    border-radius: 5px;
+}
+
+.header li{
+    text-decoration: none;
+    text-align: center;
+    list-style-type: none;
+}
+
+.header a{
+    text-decoration: none;
+}
