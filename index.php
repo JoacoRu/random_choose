@@ -1,20 +1,9 @@
 <?php
+    $value_uno = trim(isset($_POST['value']));
+    $value_dos = trim(isset($_POST['value_dos']));
+    $value_uno = '';
+    $value_dos= '';
 
-function randomChoose(){
-$unArray=[];
-if(isset($_POST)){
-    if(isset($_POST['value']) && isset($_POST['value_dos'])){
-        $unArray[] = $_POST['value'];
-        $unArray[] = $_POST['value_dos'];
-        $aleatorio =mt_rand(0,2);
-        return($unArray[$aleatorio]);
-    } else{
-        echo 'Ingresa algo xabaan';
-    }
-} elseif (empty($_POST)) {
-    echo 'Ingrese valores';
-}
-}
 
 ?>
 <!DOCTYPE html>
@@ -40,11 +29,11 @@ if(isset($_POST)){
         <article class="semi-container">
             <form method="POST">
                 <label for="value" class="label">Ingrese la primera opcion</label> <br>
-                <input type="text" name="value">
+                <input type="text" name="value" value="<?= $value_uno; ?>">
                 <br> 
                 <br>
                 <label for="value_dos" class="label">Ingrese la primera opcion</label><br>
-                <input type="text" name="value_dos"> <br> <br>
+                <input type="text" name="value_dos" value="<?= $value_dos ?>"> <br> <br>
                 <input type="submit" value="Enviar!"> 
                 <br> 
             </form>

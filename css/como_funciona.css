@@ -18,7 +18,6 @@ body{
 .header{
     background-color: #f44242;
     padding: 5px;
-    width: 36%;
     border-radius: 5px;
 }
 
@@ -30,4 +29,46 @@ body{
 
 .header a{
     text-decoration: none;
+    color: black;
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    background-color: #4286f4;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.titulo{
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.container h4{
+    font-family: 'Oswald', sans-serif;
+    text-align: center;
+}
+
+.container p{
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 5px;
+    margin-left: 2px;
+}
+
+.enviar{
+    color: #fff200;
+    font-weight: bold;
+}
+
+
+@media(min-width: 600px){
+.container{
+    width: 50%;
+    
+}
 }
