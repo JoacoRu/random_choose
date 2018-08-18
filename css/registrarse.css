@@ -24,6 +24,7 @@ body{
     margin-bottom: 5px;
     text-align: center;
     font-family: 'Oswald', sans-serif;
+    border-bottom: 1px solid black;
 }
 
 form{
@@ -57,9 +58,21 @@ form input[type=text], input[type=password]{
     margin-right: 5px; 
 }
 
+.div-errores li{
+    list-style-type: none;
+}
+
 @media (min-width: 600px){
     .container{
         width: 60%;
         margin: 0 auto;
+    }
+}
+@media (min-width: 1264px){
+    .titulo{
+        border-bottom: 1px solid black;
+        border-left: 1px solid black;
+        border-right: 1px solid black;
+        border-radius: 5px;
     }
 }
