@@ -1,4 +1,5 @@
 <?php
+    require_once('funciones.php');
     $value_uno = trim(isset($_POST['value']));
     $value_dos = trim(isset($_POST['value_dos']));
     $value_uno = '';
@@ -22,7 +23,7 @@
         <article class="container-header">
             <header class="header">
                 <ul>
-                    <li><a href="como_funciona.php">Como Funciona?</a></li>
+                    <li><a href="como_funciona.php">¿Como Funciona?</a></li>
                 </ul>
             </header>
         </article> 
