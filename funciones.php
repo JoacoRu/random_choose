@@ -106,7 +106,6 @@ function traerUltimoID(){
 }
 
 function randomChoose(){
-
     $unArray=[];
     if(isset($_POST)){
         if(isset($_POST['value']) && isset($_POST['value_dos'])){
