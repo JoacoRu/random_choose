@@ -1,12 +1,27 @@
-<?php
-    require_once('funciones.php');
-    $value_uno = trim(isset($_POST['value']));
-    $value_dos = trim(isset($_POST['value_dos']));
-    $value_uno = '';
-    $value_dos= '';
+<?php 
+require_once('funciones.php');
+if (estaLogueado()) {
+    header('location: home.php');
+    exit;
+}
 
-
+$user = '';
+$errores = [];
+if ($_POST) {
+    $user = trim($_POST['user']);
+    $pass = trim($_POST['pass']);
+    $errores = validarLogin($user, $pass);
+    if (empty($errores)) {
+        loguear($usuario);
+    if (isset($_POST['recordar'])){
+        setcookie('id', $usuario['id'], time() + 3600 *24 *30);
+    }
+    header('location:index.php');
+    exit;
+    }
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,33 +30,36 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv=”Last-Modified” content="0">
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-    <title>Random Choose</title>
+    <link rel="stylesheet" href="css/login.css">
+    <title>Random Choose- Login</title>
 </head>
 <body>
     <section class="container">
-        <article class="container-header">
-            <header class="header">
-                <ul>
-                    <li><a href="como_funciona.php">¿Como Funciona?</a></li>
-                </ul>
-            </header>
-        </article> 
-        <br>
         <article class="semi-container">
-            <form method="POST">
-                <label for="value" class="label">Ingrese la primera opcion</label> <br>
-                <input type="text" name="value" value="<?= $value_uno; ?>">
-                <br> 
-                <br>
-                <label for="value_dos" class="label">Ingrese la primera opcion</label><br>
-                <input type="text" name="value_dos" value="<?= $value_dos ?>"> <br> <br>
-                <input type="submit" value="Enviar!"> 
-                <br> 
-            </form>
-            <div class="resultado">
-                <h4><?= randomChoose();?></h4>
+            <div class="titulo">
+                <h1>Logueate!</h1>
+                <h4>Para poder loguearte completa los siguientes campos.</h4>
             </div>
+            <?php if (!empty($errores)): ?>
+			<div class="div-errores alert alert-danger">
+				<ul>
+					<?php foreach ($errores as $value): ?>
+					<li><?=$value?></li>
+					<?php endforeach; ?>
+				</ul>
+			</div>
+		<?php endif; ?>
+            <form method="post">
+                <input type="text" name="user" placeholder="Ingresa tu usuario..." value="<?= $user ?>">
+                <br>
+                <input type="password" name="pass" placeholder="Ingresa tu contraseña....">
+                <br>
+                <input type="submit" name="submit">
+                <div class="checkbox">
+                    <label for="recordar" style="font-family: 'Oswald', sans-serif;">Recuerdame</label>
+                    <input type="checkbox" name="recordar">
+                </div>
+            </form>
         </article>
     </section>
 </body>

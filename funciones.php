@@ -1,4 +1,11 @@
 <?php
+
+session_start();
+
+if (isset($_COOKIE['id'])) {
+    $_SESSION['id'] = $_COOKIE['id'];
+}
+
 function validar(){
     $user = trim($_POST['user']);
     $nombre = trim($_POST['nombre']);
@@ -171,6 +178,16 @@ function traerDatosUsuario($username){
         $datos['pass'] = $key['pass'];
     }
     return ($datos);
+}
+
+function estaLogueado() {
+    return isset($_SESSION['id']);
+}
+
+function loguear($usuario){
+    $_SESSION['id'] = $usuario['id'];
+        header('location: home.php');
+        exit;
 }
 
 ?>

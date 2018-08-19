@@ -1,5 +1,9 @@
 <?php
     require_once('funciones.php');
+    if (estaLogueado()) {
+		header('location: perfil.php');
+		exit;
+	}
     $nombre = '';
     $apellido = '';
     $user = '';
