@@ -61,6 +61,11 @@
             <br>
             <input type="submit" value="Registrarse!">
         </form>
+        <div class="irAlogin">
+            <ul>
+                <li><a href="login.php">¿Ya tienes una cuenta?</a></li>
+            </ul>
+        </div>
     </article>
 </section>
 </body>
