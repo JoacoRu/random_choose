@@ -133,9 +133,10 @@ function randomChoose(){
 
 function validarLogin(){
     
-    $pass = trim($_POST['pass']);
+    $password = trim($_POST['pass']);
     $user = trim($_POST['user']);
-    $usuario = traerDatosUsuario($user); 
+    $usuario = traerDatosUsuario($user);
+    $usuarioConIs  = isset($usuario['pass']);
     $errores = [];
     
     if($user == ''){
@@ -146,7 +147,7 @@ function validarLogin(){
 
     if($pass == ''){
         $errores['pass'] = 'Porfavor ingrese una constraseña';
-    }elseif(!password_verify($pass, $usuario['pass'])){
+    }elseif(password_verify($password, $usuarioConIs)){
         $errores['pass'] = 'La contraseña no es valida!';
     }
     return $errores;
