@@ -1,5 +1,5 @@
 <?php
-function validar($data){
+function validar(){
     $user = trim($_POST['user']);
     $nombre = trim($_POST['nombre']);
     $apellido = trim($_POST['apellido']);
@@ -10,7 +10,7 @@ function validar($data){
         $errores['user'] = 'Porfavor elige un usuario';
     }elseif(strlen($user) <= 3){
         $errores['user'] = 'Porfavor elige un nombre de usuario que al menos tenga 4 caracteres';
-    }elseif(validarUsuario($user) == false){
+    }elseif(validarUsuario($user) == 'false'){
         $errores['user'] = 'Ese nombre de usuario ya esta registrado, porfavor elegi otro!';
     }
     if($nombre == ''){
@@ -33,13 +33,13 @@ function validar($data){
     return $errores;
 }
 
-function guardarUsuario($data){
+function guardarUsuario(){
     $usuario = [
         "id" => traerUltimoID(),
-        "user" => $data['user'],
-        "name" => $data['nombre'],
-        "lastname" => $data['apellido'],
-        "pass" => password_hash($data['pass'], PASSWORD_DEFAULT),
+        "user" => $_POST['user'],
+        "name" => $_POST['nombre'],
+        "lastname" => $_POST['apellido'],
+        "pass" => password_hash($_POST['pass'], PASSWORD_DEFAULT),
     ];
 
     $usuarioJSON = json_encode($usuario);
@@ -73,7 +73,7 @@ function traerPorID($id){
     return false;
 }
 
-function traerPorUsuario(){
+function traerUsuarios(){
     $usuarios = traerTodos();
     $arrayDeNombresDeUsuarios = [];
     foreach ($usuarios as $usuario ) {
@@ -83,12 +83,22 @@ function traerPorUsuario(){
     return $arrayDeNombresDeUsuarios;
 }
 
-function validarUsuario($user){
-    $usuarios = traerPorUsuario();
-    foreach ($usuarios as $usuario) {
-        if($usuario == $user){
-            return false;
+function traerPorUsuario($user){
+    $usuarios = traerTodos();
+    foreach ($usuarios as $usuario ) {
+        if($usuario['user'] == $user){
+            return $user;
         }
+    }
+    return false;
+}
+
+function validarUsuario($user){
+    $usuarios = traerPorUsuario($user);
+    if($usuarios == $user){
+        return 'false';
+    } else{
+        return 'true';
     }
 }
 
@@ -119,6 +129,44 @@ function randomChoose(){
     } elseif (empty($_POST)) {
         echo 'Ingrese valores';
     }
+}
+
+function validarLogin(){
+    
+    $pass = trim($_POST['pass']);
+    $user = trim($_POST['user']);
+    $usuario = traerDatosUsuario($user); 
+    $errores = [];
+    
+    if($user == ''){
+        $errores['user'] = 'Porfavor ingresa un usuario';
+    }elseif(!$user == traerPorUsuario($user)){
+        $errores['user'] = 'Porfavor ingrese un usuario valido!';
     }
+
+    if($pass == ''){
+        $errores['pass'] = 'Porfavor ingrese una constraseña';
+    }elseif(!password_verify($pass, $usuario['pass'])){
+        $errores['pass'] = 'La contraseña no es valida!';
+    }
+    return $errores;
+    
+}
+
+function traerDatosUsuario($username){
+    $todos = traerTodos();
+    $usuarioCompleto = [];
+    $datos = []; 
+    foreach ($todos as $key){
+        if($key['user'] == $username){
+           $usuarioCompleto[]= $key;
+        }
+    }
+    foreach ($usuarioCompleto as $key) {
+        $datos['user'] = $key['user'];
+        $datos['pass'] = $key['pass'];
+    }
+    return ($datos);
+}
 
 ?>

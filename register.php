@@ -11,10 +11,10 @@
         $pass = trim($_POST['pass']);
         $rpass = trim($_POST['rpass']);
 
-        $errores = validar($_POST);
+        $errores = validar();
 
         if(empty($errores)){
-            guardarUsuario($_POST);
+            guardarUsuario();
             header('location:index.php');
         }
     }
