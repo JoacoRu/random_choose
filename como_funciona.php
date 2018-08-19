@@ -1,3 +1,11 @@
+<?php 
+    if (!estaLogueado()) {
+		header('location: login.php');
+		exit;
+	}
+	$usuario = traerPorID($_SESSION['id']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
