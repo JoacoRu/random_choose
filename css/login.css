@@ -79,10 +79,10 @@ form label{
     align-items: baseline;
 }
 
-.div-errores{
+.div-errores li{
     list-style-type: none;
     color: red;
-} 
+}
 
 @media (min-width: 600px){
     .container{
