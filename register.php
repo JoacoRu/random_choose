@@ -1,7 +1,7 @@
 <?php
     require_once('funciones.php');
     if (estaLogueado()) {
-		header('location: perfil.php');
+		header('location: home.php');
 		exit;
 	}
     $nombre = '';
@@ -19,7 +19,7 @@
 
         if(empty($errores)){
             guardarUsuario();
-            header('location:index.php');
+            header('location:home.php');
         }
     }
 ?>

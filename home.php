@@ -4,12 +4,21 @@
 		header('location: login.php');
 		exit;
     }
+    $usuario = traerPorID($_SESSION['id']);
+
     
 	$usuario = traerPorID($_SESSION['id']);
     $value_uno = trim(isset($_POST['value']));
     $value_dos = trim(isset($_POST['value_dos']));
     $value_uno = '';
     $value_dos= '';
+
+    if($_POST){
+        if(isset($_POST['cerrar_sesion'])){
+            desLoguear();
+            exit;
+        }
+    }
 
 
 ?>
@@ -49,6 +58,13 @@
                 <h4><?= randomChoose();?></h4>
             </div>
         </article>
+        <section>
+            <article>
+                <form method="post">
+                    <li class="logout"><input type="submit" value="Cerrar Sesion" name="cerrar_sesion"></li>
+                </form>    
+            </article>
+        </section>
     </section>
 </body>
 </html>

@@ -131,7 +131,7 @@ function randomChoose(){
             $aleatorio =mt_rand(0,2);
             return($unArray[$aleatorio]);
         } else{
-            echo 'Ingresa algo xabaan';
+            echo 'Ingresa dos elecciones porfavor!';
         }
     } elseif (empty($_POST)) {
         echo 'Ingrese valores';
@@ -149,7 +149,7 @@ function validarLogin(){
         $errores['user'] = 'Porfavor ingresa un usuario';
     }elseif(!$user == traerPorUsuario($user)){
         $errores['user'] = 'Porfavor ingrese un usuario valido!';
-    }
+    
 
     if($pass == ''){
         $errores['pass'] = 'Porfavor ingrese una constraseña';
@@ -159,6 +159,7 @@ function validarLogin(){
     }elseif(!password_verify($pass, $usuario['pass'])){
         $errores['pass'] = 'La contraseña no es valida!';
     }
+}
 
     return $errores;
     
@@ -176,9 +177,11 @@ function traerDatosUsuario($username){
     foreach ($usuarioCompleto as $key) {
         $datos['user'] = $key['user'];
         $datos['pass'] = $key['pass'];
+        $datos['id'] = $key['id'];
     }
     return ($datos);
 }
+
 
 function estaLogueado() {
     return isset($_SESSION['id']);
@@ -188,6 +191,11 @@ function loguear($usuario){
     $_SESSION['id'] = $usuario['id'];
         header('location: home.php');
         exit;
+}
+
+function desLoguear(){
+    session_destroy();
+    header('location: login.php');
 }
 
 ?>

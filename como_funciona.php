@@ -14,13 +14,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
     <link rel="stylesheet" href="css/como_funciona.css">
-    <title>Document</title>
+    <title>Como Funciona- Random Choose</title>
 </head>
 <body>
     <header class="container-header">
         <div class="header">
             <ul>
-                <li><a href="index.php">Ir a    Elecciones</a></li>
+                <li><a href="home.php">Ir a Elecciones</a></li>
             </ul>
         </div>
     </header>

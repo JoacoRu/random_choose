@@ -1,7 +1,7 @@
 <?php 
 require_once('funciones.php');
 if (estaLogueado()) {
-    header('location: index.php');
+    header('location: home.php');
     exit;
 }
 
@@ -10,11 +10,15 @@ $errores = [];
 if ($_POST) {
     $user = trim($_POST['user']);
     $pass = trim($_POST['pass']);
-    $errores = validarLogin($user, $pass);
+    $errores = validarLogin();
     if (empty($errores)) {
-        loguear($usuario);
+        loguear($user);
+
     if (isset($_POST['recordar'])){
-        setcookie('id', $usuario['id'], time() + 3600 *24 *30);
+
+        setcookie('id', $user['id'], time() + 3600 *24 *30);
+        var_dump($usuario['id']);
+        exit;
     }
     header('location:index.php');
     exit;
